@@ -9,15 +9,14 @@ class LeaveRequest extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'type', 'start_date', 'end_date', 'duration', 'reason', 'status', 'approved_by'];
+    // Kolom yang dapat diisi sesuai perubahan tabel
+    protected $fillable = ['user_id', 'type', 'start_date', 'end_date', 'reason', 'attachment'];
 
+    /**
+     * Relasi ke model User (pemilik izin)
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function approver()
-    {
-        return $this->belongsTo(User::class, 'approved_by');
     }
 }
